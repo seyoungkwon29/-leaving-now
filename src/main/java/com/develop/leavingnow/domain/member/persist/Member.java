@@ -40,6 +40,9 @@ public class Member extends BaseEntity {
     @Embedded
     private Nickname nickname;
 
+    @Column(name = "profile_url")
+    private String profileUrl;
+
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private Tendency tendency;
@@ -53,12 +56,13 @@ public class Member extends BaseEntity {
 
     @Builder
     private Member(Long id, Email email, Password password, Name name, Nickname nickname,
-                   Tendency tendency, RoleType role) {
+                   String profileUrl, Tendency tendency, RoleType role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.nickname = nickname;
+        this.profileUrl = profileUrl;
         this.tendency = tendency;
         this.role = role;
         this.activated = true;
