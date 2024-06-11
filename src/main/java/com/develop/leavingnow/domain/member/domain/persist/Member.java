@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 
@@ -73,6 +74,10 @@ public class Member extends BaseEntity {
         this.role = role;
         this.activated = true;
     }
-    
+
     // 비즈니스 로직 추가
+    public Member encode(final PasswordEncoder passwordEncoder) {
+        password = Password.encode(password.password(), passwordEncoder);
+        return this;
+    }
 }
