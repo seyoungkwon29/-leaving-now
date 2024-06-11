@@ -1,7 +1,6 @@
 package com.develop.leavingnow.domain.member.domain.persist;
 
 import com.develop.leavingnow.domain.member.domain.vo.*;
-import com.develop.leavingnow.domain.member.vo.*;
 import com.develop.leavingnow.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
