@@ -1,12 +1,14 @@
-package com.develop.leavingnow.domain.member.vo;
+package com.develop.leavingnow.domain.member.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,31 +16,32 @@ import java.util.Objects;
 @Embeddable // 엔티티의 속성으로 포함될 수 있는 클래스
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Email implements Serializable {
-    @jakarta.validation.constraints.Email(message = "이메일 형식이 올바르지 않습니다.")
-    @NotBlank(message = "이메일을 입력하세요.")
+public class Nickname implements Serializable {
+    @NotBlank(message = "닉네임을 입력하세요.")
     @Column(nullable = false)
-    private String email;
+    @Length(max = 16)
+    @Pattern(regexp = "^[a-zA-Z_-]+$")
+    private String nickname;
 
-    public static Email from(final String email) {
-        return new Email(email);
+    public static Nickname from(final String nickname) {
+        return new Nickname(nickname);
     }
 
     @JsonValue
-    public String email() {
-        return email;
+    public String nickname() {
+        return nickname;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Email email = (Email) obj;
-        return Objects.equals(email(), email.email());
+        Nickname nickname = (Nickname) obj;
+        return Objects.equals(nickname(), nickname.nickname());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email());
+        return Objects.hash(nickname());
     }
 }
