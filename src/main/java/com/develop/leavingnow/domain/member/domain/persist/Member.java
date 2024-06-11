@@ -1,5 +1,6 @@
-package com.develop.leavingnow.domain.member.persist;
+package com.develop.leavingnow.domain.member.domain.persist;
 
+import com.develop.leavingnow.domain.member.domain.vo.*;
 import com.develop.leavingnow.domain.member.vo.*;
 import com.develop.leavingnow.global.common.BaseEntity;
 import jakarta.persistence.*;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
+
+import java.time.LocalDate;
 
 @Getter
 @Entity
@@ -40,6 +43,9 @@ public class Member extends BaseEntity {
     @Embedded
     private Nickname nickname;
 
+    @Column(nullable = false)
+    private LocalDate birth;
+
     @Column(name = "profile_url")
     private String profileUrl;
 
@@ -56,12 +62,13 @@ public class Member extends BaseEntity {
 
     @Builder
     private Member(Long id, Email email, Password password, Name name, Nickname nickname,
-                   String profileUrl, Tendency tendency, RoleType role) {
+                   LocalDate birth, String profileUrl, Tendency tendency, RoleType role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.nickname = nickname;
+        this.birth = birth;
         this.profileUrl = profileUrl;
         this.tendency = tendency;
         this.role = role;

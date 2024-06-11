@@ -1,4 +1,4 @@
-package com.develop.leavingnow.domain.member.vo;
+package com.develop.leavingnow.domain.member.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.Column;
